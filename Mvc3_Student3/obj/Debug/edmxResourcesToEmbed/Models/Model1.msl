@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MvcdbModelStoreContainer" CdmEntityContainer="MvcdbEntities">
+    <EntitySetMapping Name="tb2_class">
+      <EntityTypeMapping TypeName="MvcdbModel.tb2_class">
+        <MappingFragment StoreEntitySet="tb2_class">
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb2_mapping">
+      <EntityTypeMapping TypeName="MvcdbModel.tb2_mapping">
+        <MappingFragment StoreEntitySet="tb2_mapping">
+          <ScalarProperty Name="map_id" ColumnName="map_id" />
+          <ScalarProperty Name="map_stdid" ColumnName="map_stdid" />
+          <ScalarProperty Name="map_subid" ColumnName="map_subid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb2_student">
+      <EntityTypeMapping TypeName="MvcdbModel.tb2_student">
+        <MappingFragment StoreEntitySet="tb2_student">
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="student_name" ColumnName="student_name" />
+          <ScalarProperty Name="student_add" ColumnName="student_add" />
+          <ScalarProperty Name="student_phn" ColumnName="student_phn" />
+          <ScalarProperty Name="student_clsid" ColumnName="student_clsid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb2_subject">
+      <EntityTypeMapping TypeName="MvcdbModel.tb2_subject">
+        <MappingFragment StoreEntitySet="tb2_subject">
+          <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

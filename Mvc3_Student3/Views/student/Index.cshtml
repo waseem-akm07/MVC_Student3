@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Mvc3_Student3.Models.studViewModel>
+@*@model IEnumerable<Mvc3_Student3.Models.tb2_student>*@
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    <button type="button" class="btn btn-success pull-right" onclick="location.href='@Url.Action(" Create", "student" )'">Add New Student</button>
+</p>
+
+
+<table id="table_id" class="table table-hover">
+    <thead>
+        <tr>
+            @*<th>
+                    ID
+                </th>*@
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Class
+            </th>
+            <th>
+                Subject
+            </th>
+            <th>
+                Action
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.getStudent.student_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.getStudent.student_add)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.getStudent.student_phn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.getClass.class_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.getSubject.subject_name)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Edit", "student", new { id = item.getStudent.student_id })'">Edit</button>
+                    <input type="button" onclick="DltStd(@item.getStudent.student_id)" value="Delete" class="btn delete-prompt btn-danger" />
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<div id="opdlpopup" style="display:none">
+<script>alert('div')</script></div>
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable(
+                {
+                    // "searching": true,
+                    // "ordering": true,
+                    // "pagingType": "full_numbers",
+                    //    "ajax": {
+                    //        "url": "/student/getStud",
+                    //        "type": "GET",
+                    //        "datatype": "json"
+                    //    },
+                    //    "columns": [
+                    //        { "data": "subject_id", "name": "subject_id" },
+                    //        { "data": "subject_name", "name": "subject_name" },
+                    //        // { "data": ".student_phn" }
+                    //        // { "data": "getClass.class_name" },
+                    //        // { "data": "getSubject.subject_name" },
+
+                    //    ],
+                    //  "serverSide": true,
+                    "order": [0, "desc"]
+                }
+            );
+        });
+    </script>
+}
+<script type="text/javascript">
+                function DltStd(Id) {
+                    var x = $("#opdlpopup");
+                    x.load("/student/Delete?Id=" + Id, function () {
+                        x.dialog({
+                            show: {
+                                effect: "blind",
+                                duration: 1000
+                            },
+                            hide: {
+                                effect: "explode",
+                                duration: 1000
+                            },
+                            modal: true,
+                            width: 500,
+                            height: 500,
+                            title: "DELETE EMPLOYEE RECORD" + Id,
+                            resizable: false
+
+                        });
+                    });
+                }
+</script>
+

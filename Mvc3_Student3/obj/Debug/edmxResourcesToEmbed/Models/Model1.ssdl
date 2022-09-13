@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb2_class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="class_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb2_mapping">
+    <Key>
+      <PropertyRef Name="map_id" />
+    </Key>
+    <Property Name="map_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="map_stdid" Type="int" />
+    <Property Name="map_subid" Type="int" />
+  </EntityType>
+  <EntityType Name="tb2_student">
+    <Key>
+      <PropertyRef Name="student_id" />
+    </Key>
+    <Property Name="student_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="student_name" Type="varchar" MaxLength="50" />
+    <Property Name="student_add" Type="varchar" MaxLength="50" />
+    <Property Name="student_phn" Type="varchar" MaxLength="50" />
+    <Property Name="student_clsid" Type="int" />
+  </EntityType>
+  <EntityType Name="tb2_subject">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_tb2_mapping_tb2_student">
+    <End Role="tb2_student" Type="Self.tb2_student" Multiplicity="0..1" />
+    <End Role="tb2_mapping" Type="Self.tb2_mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb2_student">
+        <PropertyRef Name="student_id" />
+      </Principal>
+      <Dependent Role="tb2_mapping">
+        <PropertyRef Name="map_stdid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb2_mapping_tb2_subject">
+    <End Role="tb2_subject" Type="Self.tb2_subject" Multiplicity="0..1" />
+    <End Role="tb2_mapping" Type="Self.tb2_mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb2_subject">
+        <PropertyRef Name="subject_id" />
+      </Principal>
+      <Dependent Role="tb2_mapping">
+        <PropertyRef Name="map_subid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb2_student_tb2_class">
+    <End Role="tb2_class" Type="Self.tb2_class" Multiplicity="0..1" />
+    <End Role="tb2_student" Type="Self.tb2_student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb2_class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="tb2_student">
+        <PropertyRef Name="student_clsid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcdbModelStoreContainer">
+    <EntitySet Name="tb2_class" EntityType="Self.tb2_class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb2_mapping" EntityType="Self.tb2_mapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb2_student" EntityType="Self.tb2_student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb2_subject" EntityType="Self.tb2_subject" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tb2_mapping_tb2_student" Association="Self.FK_tb2_mapping_tb2_student">
+      <End Role="tb2_student" EntitySet="tb2_student" />
+      <End Role="tb2_mapping" EntitySet="tb2_mapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb2_mapping_tb2_subject" Association="Self.FK_tb2_mapping_tb2_subject">
+      <End Role="tb2_subject" EntitySet="tb2_subject" />
+      <End Role="tb2_mapping" EntitySet="tb2_mapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb2_student_tb2_class" Association="Self.FK_tb2_student_tb2_class">
+      <End Role="tb2_class" EntitySet="tb2_class" />
+      <End Role="tb2_student" EntitySet="tb2_student" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
